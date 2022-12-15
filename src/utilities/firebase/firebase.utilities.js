@@ -46,6 +46,7 @@ export const signInWithGoogleRedirect = () =>
 export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
+  //sending data to firestore from shop-data.js
   collectionKey,
   objectsToAdd,
   field = 'title'
@@ -62,15 +63,19 @@ export const addCollectionAndDocuments = async (
 };
 
 export const getCategoriesAndDocuments = async () => {
+  //fetching our data(document snapshot) from firestore
   const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  const categoryMap = querySnapshot.docs.reduce(
+    (acc, docSnapshot) => {
+      const { title, items } = docSnapshot.data();
+      acc[title.toLowerCase()] = items;
+      return acc;
+    },
+    {} /* initial instance of the object we wanna get */
+  );
   return categoryMap;
 };
 
