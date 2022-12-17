@@ -16,8 +16,8 @@ export const USER_ACTION_TYPES = {
 };
 
 const userReducer = (state, action) => {
-  console.log('dispatched');
-  console.log(action);
+  /* console.log('dispatched');
+  console.log(action); */
   const { type, payload } = action;
 
   switch (type) {
@@ -40,7 +40,7 @@ export const UserProvider = ({ children }) => {
   /* const [currentUser, setCurrentUser] = useState(null); */
   const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const { currentUser } = state;
-  console.log(currentUser);
+  /*  console.log(currentUser); */
   const setCurrentUser = (user) => {
     dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
   };
@@ -51,7 +51,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-      console.log(user);
+      /* console.log(user); */
       if (user) {
         createUserDocumentFromAuth(user);
       }
