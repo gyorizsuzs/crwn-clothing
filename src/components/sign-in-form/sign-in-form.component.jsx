@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+
 import FormInput from '../form-input/form-input.components';
 import Button from '../button/button.component';
-import { UserContext } from '../../contexts/user.context';
+/* import { UserContext } from '../../contexts/user.context'; */
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../../utilities/firebase/firebase.utilities';
 import './sign-in-form.styles.scss';
@@ -18,7 +18,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
+  /* const { setCurrentUser } = useContext(UserContext); */
 
   /* console.log(formFields); */
 
@@ -61,7 +61,7 @@ const SignInForm = () => {
   return (
     <div className='sign-up-container'>
       <h2>Already have an account?</h2>
-      <span>Sign up with your email and password</span>
+      <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Email'
